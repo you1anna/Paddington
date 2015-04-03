@@ -15,7 +15,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Paddington(1)", "http://loc
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_49784"
-		Release.AspNetCompiler.PhysicalPath = "C:\dev\Paddington"
+		Release.AspNetCompiler.PhysicalPath = "C:\dev\Paddington\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49784\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
@@ -23,6 +23,13 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Paddington(1)", "http://loc
 		Release.AspNetCompiler.Debug = "False"
 		SlnRelativePath = "C:\dev\Paddington\"
 		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9E07BCEA-9B90-49F5-9638-20C999A4FC60}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Global

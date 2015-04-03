@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Globalization;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 
 public partial class _Default : System.Web.UI.Page
 {
     private string connString =
-        @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\VS2010 Projects\Paddington\App_Data\PaddingtonDB.mdf;Integrated Security=True";
+        @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\dev\Paddington\App_Data\PaddingtonDB.mdf;Integrated Security=True";
+
     protected void Page_Load(object sender, EventArgs e)
     {
         loadPlayers();
-        
     }
 
-    private void loadPlayers()
+    protected void loadPlayers()
     {
         List<String> columnData = new List<String>();
 
@@ -50,40 +45,67 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
+        getPlayerTableFromDb();
+    }
+
+    private void getPlayerTableFromDb()
+    {
         var conn = new SqlConnection(connString);
         {
-            var sql = new SqlCommand("INSERT INTO Player(Name, Balance, LastPaymentDate) Values(@Name, @Balance, @LastPaymentDate)", conn);
+            var sql =
+                new SqlCommand(
+                    "INSERT INTO Player(Name, Balance, LastPaymentDate) Values(@Name, @Balance, @LastPaymentDate)", conn);
             sql.Parameters.AddWithValue("@Name", nameBox.Text);
             sql.Parameters.AddWithValue("@Balance", Convert.ToDecimal(balanceBox.Text));
-            sql.Parameters.AddWithValue("@LastPaymentDate", datePayment.SelectedDate.ToString(CultureInfo.InvariantCulture));
+            sql.Parameters.AddWithValue("@LastPaymentDate",
+                datePayment.SelectedDate.ToString(CultureInfo.InvariantCulture));
 
             conn.Open();
             sql.ExecuteNonQuery();
             conn.Close();
         }
     }
+
     protected void Button3_Click(object sender, EventArgs e)
     {
+        var player = new Player();
+        var selectedPlayer = playerDropdown.SelectedItem.ToString();
+        var getBalance = "SELECT Balance FROM Player WHERE Name = '" + selectedPlayer + "'";
 
+        var conn = new SqlConnection(connString);
+        conn.Open();
+
+        using (var cmd = new SqlCommand(getBalance, conn))
+        {
+            using (var reader = cmd.ExecuteReader())
+            {
+                var balanceOrdinal = reader.GetOrdinal("Balance");
+                while (reader.Read())
+                {
+                    player.Balance = reader.GetInt32(balanceOrdinal);
+                }
+            }
+            player.Balance = player.Balance + Convert.ToInt32(addBox.Text);
+        }
+        conn.Close();
+
+        var conn2 = new SqlConnection(connString);
+        {
+            var sql2 = new SqlCommand("UPDATE Player SET Balance = " + player.Balance + " WHERE Name = @Name", conn2);
+            sql2.Parameters.AddWithValue("@Name", selectedPlayer);
+
+            conn2.Open();
+            sql2.ExecuteNonQuery();
+            conn2.Close();
+        }
+    }
+
+    public class Player
+    {
+        public int Name { get; set; }
+
+        public int Balance { get; set; }
+
+        public string LastPaymentDate { get; private set; }
     }
 }
-
-[AttributeUsage(AttributeTargets.Property, Inherited = true)]
-[Serializable]
-public class MappingAttribute : Attribute
-{
-    public string ColumnName = null;
-}
-
-public class Product
-{
-    [Mapping(ColumnName = "Name")]
-    public int Name { get; private set; }
-
-    [Mapping(ColumnName = "Balance")]
-    public int Balance { get; private set; }
-
-    [Mapping(ColumnName = "LastPaymentDate")]
-    public string LastPaymentDate { get; private set; }
-}
-
