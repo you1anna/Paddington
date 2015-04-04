@@ -45,7 +45,7 @@
         }
         .auto-style20 {
             height: 40px;
-            width: 349px;
+            width: 486px;
         }
         .auto-style21 {
             width: 127px;
@@ -56,7 +56,7 @@
             width: 127px;
         }
         .auto-style23 {
-            width: 349px;
+            width: 486px;
             height: 215px;
         }
         .auto-style24 {
@@ -79,7 +79,7 @@
             width: 125px;
         }
         .auto-style27 {
-            width: 349px;
+            width: 486px;
             height: 11px;
         }
         .auto-style28 {
@@ -125,7 +125,9 @@
                         </asp:Calendar>
                     </td>
                     <td class="auto-style24"></td>
-                    <td class="auto-style25">- make columns unique</td>
+                    <td class="auto-style25">
+                        <asp:Label ID="errorLabel" runat="server" Font-Names="Calibri" Font-Size="Small" ForeColor="#990000" Text="exception" ViewStateMode="Enabled"></asp:Label>
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style20"></td>

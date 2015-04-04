@@ -10,7 +10,16 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        loadPlayers();
+        errorLabel.Text = "";
+
+        try
+        {
+            loadPlayers();
+        }
+        catch (Exception ex)
+        {
+            errorLabel.Text = ex.Message;
+        }
     }
 
     protected void loadPlayers()
@@ -50,19 +59,26 @@ public partial class _Default : System.Web.UI.Page
 
     private void getPlayerTableFromDb()
     {
-        var conn = new SqlConnection(connString);
+        try
         {
-            var sql =
-                new SqlCommand(
-                    "INSERT INTO Player(Name, Balance, LastPaymentDate) Values(@Name, @Balance, @LastPaymentDate)", conn);
-            sql.Parameters.AddWithValue("@Name", nameBox.Text);
-            sql.Parameters.AddWithValue("@Balance", Convert.ToDecimal(balanceBox.Text));
-            sql.Parameters.AddWithValue("@LastPaymentDate",
-                datePayment.SelectedDate.ToString(CultureInfo.InvariantCulture));
+            var conn = new SqlConnection(connString);
+            {
+                var sql =
+                    new SqlCommand(
+                        "INSERT INTO Player(Name, Balance, LastPaymentDate) Values(@Name, @Balance, @LastPaymentDate)", conn);
+                sql.Parameters.AddWithValue("@Name", nameBox.Text);
+                sql.Parameters.AddWithValue("@Balance", Convert.ToDecimal(balanceBox.Text));
+                sql.Parameters.AddWithValue("@LastPaymentDate",
+                    datePayment.SelectedDate.ToString(CultureInfo.InvariantCulture));
 
-            conn.Open();
-            sql.ExecuteNonQuery();
-            conn.Close();
+                conn.Open();
+                sql.ExecuteNonQuery();
+                conn.Close();
+            }
+        }
+        catch (SqlException ex)
+        {
+            errorLabel.Text = ex.Message;
         }
     }
 
@@ -103,9 +119,7 @@ public partial class _Default : System.Web.UI.Page
     public class Player
     {
         public int Name { get; set; }
-
         public int Balance { get; set; }
-
         public string LastPaymentDate { get; private set; }
     }
 }
