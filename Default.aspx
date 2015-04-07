@@ -5,108 +5,47 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    
+    <link href="Main.css" rel="stylesheet" type="text/css"/>
+    <meta name="description" content="The description of my page" />
     <style type="text/css">
-        .auto-style1 {
-            width: 227px;
+        .auto-style35 {
+            height: 83px;
         }
-        .auto-style4 {
-            width: 227px;
-            height: 26px;
-        }
-        .auto-style5 {
+        .auto-style36 {
             width: 46px;
-            height: 26px;
+            height: 83px;
         }
-        .auto-style6 {
-            height: 26px;
-            width: 125px;
-        }
-        .auto-style12 {
-            width: 93px;
-            height: 26px;
-        }
-        .auto-style13 {
-            width: 93px;
-        }
-        .auto-style14 {
-            width: 46px;
-        }
-        .auto-style15 {
+        .auto-style37 {
             width: 88px;
-            height: 26px;
+            height: 83px;
         }
-        .auto-style16 {
-            width: 88px;
-        }
-        .auto-style18 {
-            height: 40px;
-        }
-        .auto-style19 {
-        }
-        .auto-style20 {
-            height: 40px;
-            width: 486px;
-        }
-        .auto-style21 {
-            width: 127px;
-            height: 11px;
-        }
-        .auto-style22 {
-            height: 40px;
-            width: 127px;
-        }
-        .auto-style23 {
-            width: 486px;
-            height: 215px;
-        }
-        .auto-style24 {
-            width: 127px;
-            height: 215px;
-        }
-        .auto-style25 {
-            height: 215px;
-        }
-        .newStyle1 {
-            table-layout: fixed;
-            font-family: "Calibri Light";
-            background-color: #EAF0F7;
-        }
-        .newStyle2 {
-            table-layout: fixed;
-            width: 684px;
-        }
-        .auto-style26 {
+        .auto-style38 {
             width: 125px;
-        }
-        .auto-style27 {
-            width: 486px;
-            height: 11px;
-        }
-        .auto-style28 {
-            height: 11px;
+            height: 83px;
         }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+    <div style="margin-bottom: 220px">
     
         <br />
-        <br />
-        <br />
-        <asp:Panel ID="Panel1" runat="server" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="1px" Width="686px">
-            <table class="newStyle2" border="0">
+            <table class="auto-style22" border="0">
                 <tr>
-                    <td class="auto-style19" colspan="3">&nbsp;</td>
+                    <td class="auto-style18" colspan="4"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style27">Name:
+                    <td class="auto-style27">
+                        <asp:Label ID="Label3" runat="server" EnableViewState="False" Font-Names="Calibri" Text="Name:"></asp:Label>
                         <asp:TextBox ID="nameBox" runat="server" Width="220px"></asp:TextBox>
                     </td>
-                    <td class="auto-style21">Balance:
-                        <asp:TextBox ID="balanceBox" runat="server" Width="88px"></asp:TextBox>
+                    <td class="auto-style33">&nbsp;<asp:Label ID="Label2" runat="server" Font-Names="Calibri" style="text-align: right" Text="Balance:"></asp:Label>
                     </td>
-                    <td class="auto-style28">
+                    <td class="auto-style21">
+                        <asp:TextBox ID="balanceBox" runat="server" Width="88px" style="margin-left: 0px"></asp:TextBox>
+                    </td>
+                    <td class="auto-style34">
                         <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Add Player" Width="186px" />
                     </td>
                 </tr>
@@ -124,6 +63,7 @@
                             <WeekendDayStyle BackColor="#FFFFCC" />
                         </asp:Calendar>
                     </td>
+                    <td class="auto-style31">&nbsp;</td>
                     <td class="auto-style24"></td>
                     <td class="auto-style25">
                         <asp:Label ID="errorLabel" runat="server" Font-Names="Calibri" Font-Size="Small" ForeColor="#990000" Text="exception" ViewStateMode="Enabled"></asp:Label>
@@ -131,30 +71,28 @@
                 </tr>
                 <tr>
                     <td class="auto-style20"></td>
-                    <td class="auto-style22"></td>
+                    <td class="auto-style32"></td>
+                    <td class="auto-style22">&nbsp;</td>
                     <td class="auto-style18"></td>
                 </tr>
             </table>
-        </asp:Panel>
         <br />
         <br />
-        <asp:Panel ID="playerPanel" runat="server" Font-Names="Calibri" Height="101px" Width="685px" BorderColor="#CCCCCC" BorderStyle="Dotted" BorderWidth="1px">
-            &nbsp;&nbsp;&nbsp;
-            <table style="width:99%;">
+            <table style="width:60%; float: left; overflow: auto; font-family: Calibri;">
                 <tr>
-                    <td class="auto-style4">
+                    <td class="auto-style35">
                         <asp:DropDownList ID="playerDropdown" runat="server" Height="17px" Width="229px">
                         </asp:DropDownList>
                     </td>
-                    <td class="auto-style5"></td>
-                    <td class="auto-style12">
+                    <td class="auto-style36"></td>
+                    <td class="auto-style35">
                         <asp:Label ID="Label1" runat="server" style="text-align: right" Text="Add amount:"></asp:Label>
                     </td>
-                    <td class="auto-style15">
+                    <td class="auto-style37">
                         <asp:TextBox ID="addBox" runat="server" Width="61px" CausesValidation="True"></asp:TextBox>
                     </td>
-                    <td class="auto-style6">
-                        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" style="margin-left: 0px; height: 26px;" Text="Add" />
+                    <td class="auto-style38">
+                        <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" style="margin-left: 0px; " Text="Add" Height="40px" Width="134px" />
                         &nbsp;</td>
                 </tr>
                 <tr>
@@ -174,9 +112,6 @@
                     <td class="auto-style26">&nbsp;</td>
                 </tr>
             </table>
-        </asp:Panel>
-        <br />
-        <br />
         <br />
         <br />
         <br />

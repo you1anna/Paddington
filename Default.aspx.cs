@@ -54,10 +54,10 @@ public partial class _Default : System.Web.UI.Page
 
     protected void Button1_Click(object sender, EventArgs e)
     {
-        getPlayerTableFromDb();
+        addPlayerToDb();
     }
 
-    private void getPlayerTableFromDb()
+    private void addPlayerToDb()
     {
         try
         {
@@ -67,7 +67,7 @@ public partial class _Default : System.Web.UI.Page
                     new SqlCommand(
                         "INSERT INTO Player(Name, Balance, LastPaymentDate) Values(@Name, @Balance, @LastPaymentDate)", conn);
                 sql.Parameters.AddWithValue("@Name", nameBox.Text);
-                sql.Parameters.AddWithValue("@Balance", Convert.ToDecimal(balanceBox.Text));
+                sql.Parameters.AddWithValue("@Balance", Convert.ToInt32(balanceBox.Text));
                 sql.Parameters.AddWithValue("@LastPaymentDate",
                     datePayment.SelectedDate.ToString(CultureInfo.InvariantCulture));
 
